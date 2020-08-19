@@ -1,47 +1,29 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
+const { v4: uuidV4 } = require("uuid");
 
-function www() {
-  function onRequest(req, res) {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    var ww = [
-      '<html lang="en">',
-      "<head>",
-      '<meta charset="UTF-8">',
-      '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-      "<title>Document</title>",
-      "</head>",
-      "<body>",
-      "www zzzzzzzzzzzzzz",
-      "</body>",
-      "</html>",
-    ];
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 
-    res.write(ww.join(""));
-    res.end();
-  }
+app.get("/", (req, res) => {
+  res.redirect(`/${uuidV4()}`);
+});
 
-  var port = process.env.PORT || 3000;
+app.get("/:room", (req, res) => {
+  res.render("room", { roomId: req.params.room });
+});
 
-  app.get("/", function (req, res) {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    var ww = [
-      '<html lang="en">',
-      "<head>",
-      '<meta charset="UTF-8">',
-      '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-      "<title>Document</title>",
-      "</head>",
-      "<body>",
-      "www zzzzzzzzzzzzzz",
-      "</body>",
-      "</html>",
-    ];
+io.on("connection", (socket) => {
+  socket.on("join-room", (roomId, userId) => {
+    socket.join(roomId);
+    socket.to(roomId).broadcast.emit("user-connected", userId);
 
-    res.write(ww.join(""));
-    res.end();
+    socket.on("disconnect", () => {
+      socket.to(roomId).broadcast.emit("user-disconnected", userId);
+    });
   });
+});
 
-  app.listen(port);
-}
-exports.send = www;
+server.listen(3000);
