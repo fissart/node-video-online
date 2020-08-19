@@ -2,8 +2,8 @@ const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
   secure: true,
-  host: "https://fisartpeers.herokuapp.com/",
-  port: 443,
+  host: "your-app-name.herokuapp.com",
+  port: 3001,
 });
 const myVideo = document.createElement("video");
 myVideo.muted = true;
