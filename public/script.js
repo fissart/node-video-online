@@ -1,7 +1,7 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myPeer = new Peer(undefined, {
-  host: "https://fisartpeers.herokuapp.com",
+  host: "fisartpeers.herokuapp.com",
   //host: "/",
   port: "3001",
   //  secure: true,
