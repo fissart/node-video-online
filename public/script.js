@@ -1,10 +1,12 @@
 const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
-const myPeer = new Peer(undefined, {
+const myPeer = new Peer({
+  key: "peers",
   host: "fisartpeers.herokuapp.com",
-  //host: "/",
-  port: "3001",
-  //  secure: true,
+  // host: "/",
+  // port: "3001",
+  port: "443",
+  secure: true,
 });
 const myVideo = document.createElement("video");
 myVideo.muted = true;
@@ -58,3 +60,4 @@ function addVideoStream(video, stream) {
   });
   videoGrid.append(video);
 }
+//peerjs--port 3001
