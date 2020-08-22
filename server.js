@@ -1,29 +1,28 @@
 const express = require("express");
-const app = express();
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
-const { v4: uuidV4 } = require("uuid");
+const people = require("./people.json");
 
-app.set("view engine", "ejs");
-app.use(express.static("public"));
+const app = express();
+
+app.set("view engine", "pug");
+
+// serve static files from the `public` folder
+app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
-  res.redirect(`/${uuidV4()}`);
-});
-
-app.get("/:room", (req, res) => {
-  res.render("room", { roomId: req.params.room });
-});
-
-io.on("connection", (socket) => {
-  socket.on("join-room", (roomId, userId) => {
-    socket.join(roomId);
-    socket.to(roomId).broadcast.emit("user-connected", userId);
-
-    socket.on("disconnect", () => {
-      socket.to(roomId).broadcast.emit("user-disconnected", userId);
-    });
+  res.render("index", {
+    title: "Homepage",
+    people: people.profiles
   });
 });
-const port = process.env.PORT || 3000;
-server.listen(port);
+
+app.get("/profile", (req, res) => {
+  const person = people.profiles.find(p => p.id === req.query.id);
+  res.render("profile", {
+    title: `About ${person.firstname} ${person.lastname}`,
+    person
+  });
+});
+
+const server = app.listen(7000, () => {
+  console.log(`Express running → PORT ${server.address().port}`);
+});
