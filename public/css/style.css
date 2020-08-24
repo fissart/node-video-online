@@ -20,8 +20,11 @@ html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
-  box-sizing: inherit; /* [1] */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  /* [1] */
   margin: 0;
   padding: 0;
 }
@@ -32,7 +35,8 @@ html {
    ========================================================================== */
 
 body {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; /* [2] */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  /* [2] */
 }
 
 
@@ -46,7 +50,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 80px;
-  background-color: #525286;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #1010bb;
   color: #FFFFFF;
   margin-bottom: 50px;
 }
@@ -73,7 +78,7 @@ body {
   text-align: center;
 }
 
-.person > * {
+.person>* {
   margin-bottom: 5px;
 }
 
@@ -108,7 +113,7 @@ body {
   flex-direction: column;
 }
 
-.profile-details > * {
+.profile-details>* {
   margin-bottom: 20px;
 }
 
@@ -128,6 +133,6 @@ body {
 
 .button-twitter {
   color: #FFFFFF;
-  background-color: #659AF1;
+  background-color: #ad09b3;
   border-radius: 5px;
 }
