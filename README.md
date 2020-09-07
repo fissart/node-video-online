@@ -1,23 +1,23 @@
-![Screenshot](https://res.cloudinary.com/turnup/image/upload/v1526512881/homepage-cards.png)
+# WebRTC Video Conferencing with simple-peer
+A simple video conferencing example using simple-peer.
+This project allows multiple devices to connect with eachother with audio and video using webrtc.
+The package [simple-peer](https://github.com/feross/simple-peer) is used for webrtc.
+The implementation of the signaling server is done with [socket.io](https://socket.io/)
 
-# First Node Website Tutorial
+## Demo
+[Demo on heroku](https://dirvann-webrtc-video.herokuapp.com/)
 
-These repo contains the finished code for the tutorial on building a simple Node.js website with Express and Pug.
+## Running
 
-You can [access the tutorial here](https://freshman.tech/learn-node).
+run `npm install` and then `npm start` in the main directory.
 
-[Live demo](https://node-express-pug.herokuapp.com/)
+Then open the browser at `localhost:3012` or `[your network ip/ public dns]:3012`.
 
-## Instructions
-1. Clone repo
-2. Run `npm install`
 
-## Usage
-1. Run `npm start`
-2. Navigate to `localhost:7000`
 
-## Getting Help
+## Configuration
 
-Need some help? Leave a comment on the tutorial — this repo is meant as a place to grab the finished code and isn't a support channel.
+Configurations can be found in `app.js` and `public/js/main.js`.
 
+Replace the ssl certificates `ssl/key.pem` and `ssl/cert.pem` with your own.
 
